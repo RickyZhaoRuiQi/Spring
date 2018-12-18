@@ -69,6 +69,39 @@
         - Spring注入是指在启动Spring容器加载bean配置的时候，完成对变量的赋值行为
         - 常用的两种注入方式
             - 设置注入
+                - 通过调用set()方法 <property>
             - 构造注入
+                - 通过调用构造器 <constructor-arg>
+                
+---
+
 - Bean（配置、注解）
+    1. Bean的配置项
+        1. Id->Bean的唯一标识（变量名）
+        2. Class->具体要实例化的类**理论上必须配置的项**
+        3. Scope->范围，作用域
+        4. Constructor arguments->构造器参数（构造器注入）
+        5. Properties->属性（设置注入）
+        6. Autowiring mode->自动装配
+        7. lazy-initialization mode->懒加载
+        8. Initialization/destruction method->初始化和销毁的方法
+    2. Bean的作用域
+        1. singleton：单例，指一个Bean容器中只存一份（默认方式）
+        2. prototype：每次请求（每次使用）创建新的实例，destroy方式不生效
+        3. request：每次http请求创建一个实例且在当前的request内有效
+        4. session：同上，每次http请求创建，当前session有效
+        5. global session：基于portlet的web中有效（portlet定义了global session），如果在web中，同session
+    3. 声明周期
+        1. 定义
+        2. 初始化
+            1. 实现org.springframework.beans.factory.InitializingBean接口，覆盖afterPropertiesSet方法
+            2. 配置init-method
+            3. 全局默认方式
+        3. 使用
+        4. 销毁
+            1. 实现org.springframework.beans.factory.DisposableBean接口，覆盖destroy方法
+            2. 配置destroy-method
+            3. 全局默认方式
+---
+    
 - AOP（配置、注解、AspectJ、API）
