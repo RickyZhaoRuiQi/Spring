@@ -102,6 +102,32 @@
             1. 实现org.springframework.beans.factory.DisposableBean接口，覆盖destroy方法
             2. 配置destroy-method
             3. 全局默认方式
+    4. Aware
+        - Spring提供一些以Aware为后缀的接口，实现了Aware接口的bean在被初始化之后可以获取相应的资源
+        - 通过Aware接口，可以对Spring相应的资源进行操作（一定要谨慎）
+        - 为对Spring进行简单的扩展提供了方便的接口
+        - 例如：ApplicationContextAware，BeanNameAware等
+    5. Bean的自动装配（Autowiring）
+        - NO：不做任何操作
+        - byName：根据属性名自动装配。此选项将检查容器并根据名字查找与属性完全一致的bean，并将其与属性自动装配
+        - byType：如果容器中存在一个与指定属性类型相同的bean，那么将与该属性自动装配；如果存在多个该类型的bean，那么抛出异常，并指出不能使用byType方式进行自动装配；如果没有找到相匹配的bean，则什么事都不发生
+        - Constructor：与byType类似，不同之处在于它应用于构造器参数。如果容器中没有找到与构造器参数类型一致的bean，那么抛出异常
+    6. Resource
+        - 针对于资源文件的同意接口
+        - Resources种类
+            1. UrlResources：URL对应的资源，根据一个URL地址即可构建
+            2. ClassPathResources：获取类路径下的资源文件
+            3. FileSystemResources：获取文件系统里的资源
+            4. ServletContextResources：ServletContext封装的资源，用于访问ServletContext环境下的资源
+            5. InputStreamResources：针对输入流封装的资源
+            6. ByteArrayResources：针对于字节数组封装的资源
+        - ResourcesLoader
+            - 所有resource实现该接口
+            - 前缀
+                1. classpath:->从classpath加载
+                2. file:->从文件系统加载
+                3. http:->作为RUL加载
+                4. (none)
 ---
     
 - AOP（配置、注解、AspectJ、API）
