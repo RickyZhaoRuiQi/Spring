@@ -128,6 +128,37 @@
                 2. file:->从文件系统加载
                 3. http:->作为RUL加载
                 4. (none)
+    7. Bean管理的注解实现
+        1. Classpath扫描与组件管理
+            - 从Spring3.0开始，Spring JavaConfig项目提供了很多特性，包括使用java而不是XML定义bean。比如@Configuration,@Bean,@Import,@DependsOn
+            - @Component是一个通用注解，可用于任何bean
+            - @Repository,@Service,@Controller是更有针对性的注解
+                1. @Repository通常用于注解DAO类，即持久层
+                2. @Service通用用于注解Service类，即服务层
+                3. @Controller通常用于Controller层，即控制层（MVC）
+            - **元注解**
+                - 许多Spring提供的注解可以作为自己的代码，即“元数据注解”，元注解是一个简单的注解，可以应用到另一个注解
+                - 除了value()，元注解还可以有其他的属性，允许定制
+            - @Required
+                - 适用于bean属性的setter方法
+                - 这个注解仅仅表示，受影响的bean属性必须在配置时被填充，通过在bean定义或通过自动装配一个明确的属性值
+            - @Autowired
+                - 可以将@Autowired注解为“传统”的setter方法
+                - 可用于构造器或成员变量
+                - 默认形况下，如果找不到合适的bean将会导致autowiring失败排除异常，可以避免（bean得到null）
+                - 每个类只能有一个构造器被标记为required=true
+                - @Autowired的必要属性，建议使用@Required注解
+                - 可以通过添加注解给需要该类型的数组的字段或方法，以提供ApplicationContext中的所有特定类型的bean
+                - 可以用于装配key为String的Map
+                - 如果希望数组有序，可以让bean实现org.springframework.core.Ordered接口或使用@Order注解
+            - @Qualifier
+                - 按类型自动装配可能有多个bean实例的情况，可以使用Spring的@Qualifier注解缩小范围（或指定唯一），也可以用于指定单独的构造器参数或方法参数
+                - 可用于注解集合类型变量
+                - 如果通过名字进行注解注入，主要使用的不是@Autowired（即使在技术上能够通过@Qualifier指定bean的名字），替代方案是使用JSR-250@Resource注解，它是通过其独特的名称来定义识别特定的目标（这是一个与其声明的类型无关的匹配过程）
+                - 因语义差异，集合或Map类型的bean无法通过@Autowired来注入，因为没有类型匹配到这样的bean，为这些bean使用@Resource注解，通过唯一名称引用集合或Map的bean
+                - @Autowired适用于fields,constructors,multi-argument-method这些允许在参数级别使用@Qualifier注解缩小范围的情况
+                - @Resource适用于成员变量、只有一个参数的setter方法，所以在目标是构造器或一个多参数方法时，最好的方式是使用qualifiers
+                
 ---
     
 - AOP（配置、注解、AspectJ、API）
