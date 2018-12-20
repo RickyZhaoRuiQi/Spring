@@ -158,6 +158,16 @@
                 - 因语义差异，集合或Map类型的bean无法通过@Autowired来注入，因为没有类型匹配到这样的bean，为这些bean使用@Resource注解，通过唯一名称引用集合或Map的bean
                 - @Autowired适用于fields,constructors,multi-argument-method这些允许在参数级别使用@Qualifier注解缩小范围的情况
                 - @Resource适用于成员变量、只有一个参数的setter方法，所以在目标是构造器或一个多参数方法时，最好的方式是使用qualifiers
+            - @Bean
+                1. @Bean标识一个用于配置和初始化一个由SpringIoc容器管理的新对象的方法，类似于XML配置文件的<bean/>
+                2. 可以在Spring的@Component注解的类中使用@bean注解任何方法（仅仅是可以）
+                3. 上一点中，通常使用的是@Configuration
+            - @ImportResource和@Value进行资源文件读取
+                - @ImportResource注解类
+                - @Value对成员赋值（从properties文件中读取）
+            - @Bean和@Scope
+                - 默认@Bean是单例的
+                - @Scope-> value指定范围，proxyMode采用代理方式
                 
 ---
     
