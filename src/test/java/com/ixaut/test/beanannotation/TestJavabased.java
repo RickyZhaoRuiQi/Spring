@@ -34,4 +34,9 @@ public class TestJavabased extends UnitTestBase {
         Store store2 = super.getBean("store");
         System.out.println(store2.hashCode());
     }
+
+    /*@Test
+    public void testG(){
+        Store store = super.getBean("stringStoreTest");
+    }*/
 }

@@ -1,4 +1,4 @@
 package com.ixaut.beanannotation.javabased;
 
-public interface Store {
+public interface Store<T> {
 }

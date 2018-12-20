@@ -1,5 +1,6 @@
 package com.ixaut.beanannotation.javabased;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 
@@ -26,9 +27,31 @@ public class StoreConfig {
         return new StringStore();
     }*/
 
-    @Bean(name = "store")
-    @Scope(value = "prototype"/*,proxyMode = ScopedProxyMode.TARGET_CLASS*/)
+    /*@Bean(name = "store")
+    @Scope(value = "prototype"*//*,proxyMode = ScopedProxyMode.TARGET_CLASS*//*)
     public Store stringStore(){
         return new StringStore();
+    }*/
+
+    @Autowired
+    private Store<String> stringStore;
+    @Autowired
+    private Store<Integer> integerStore;
+
+    @Bean
+    public StringStore stringStore(){
+        return new StringStore();
     }
+
+    @Bean
+    public IntegerStore integerStore(){
+        return new IntegerStore();
+    }
+
+    /*@Bean(name = "stringStoreTest")
+    public *//*StringStore*//*Store stringStoreTest(){
+        System.out.println("stringStore:"+stringStore.getClass().getName());
+        System.out.println("integerStore:"+integerStore.getClass().getName());
+        return new StringStore();
+    }*/
 }

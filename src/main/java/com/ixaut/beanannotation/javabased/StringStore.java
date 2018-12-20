@@ -1,6 +1,6 @@
 package com.ixaut.beanannotation.javabased;
 
-public class StringStore implements Store {
+public class StringStore implements Store<String> {
 
     public void init(){
         System.out.println("This is init...");
