@@ -205,5 +205,18 @@
               - Spring AOP默认使用标准的JavaSE动态代理作为AOP代理，这使得任何接口（或者接口集）都可以被代理
               - Spring AOP中也可以使用CGLIB代理（如果一个业务对象并没有实现一个接口）
     4. Schema-based AOP
+        - Spring所有的切面和通知器都必须放在一个<aop:config>内（可以配置包含多个<aop:config>元素），每一个<aop:config>可以包含pointcut，advisor和aspect元素（它们必须按照这个顺序j进行声明）
+        - pointcut
+            1. execution(public**(..)) 切入点为执行所有public方法时
+            2. execution(* set*(..)) 切入点为执行所有set开始的方法时
+            3. execution(* com.xyz.service.AccountService.*(..)) 切入点为执行AccountService类中的所有方法时
+            4. execution(* com.xyz.service..(..)) 切入点为执行com.xyz.service包下的所有方法时
+            5. execution(* com.xyz.service...(..)) 切入点为执行com.xyz.service包及其子包下的所有方法时
+            6. within(com.xyz.service.*)(only in Spring AOP)
+            7. within(com.xyz.service..*)(only in Spring AOP) within用于匹配指定类型内的方法执行
+            8. this(com.xyz.service.AccountService)(only in Spring AOP) this用于匹配当前AOP代理对象类型的执行方法
+            9. target(com.xyz.service.AccountService)(only in Spring AOP) target用于匹配d当前目标对象类型的执行方法
+            10. args(java.io.Serializable)(Only in Spring AOP)
+            11. ...等等，查询文档
     5. Spring AOP API
     6. AspectJ
