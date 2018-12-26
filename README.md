@@ -218,5 +218,14 @@
             9. target(com.xyz.service.AccountService)(only in Spring AOP) target用于匹配d当前目标对象类型的执行方法
             10. args(java.io.Serializable)(Only in Spring AOP)
             11. ...等等，查询文档
+        - Introductions
+            - 简介允许一个切面声明一个实现指定接口的通知对象，并且提供一个接口实现类来代表这些对象
+            - 由<aop:aspect>中的<aop:declare-parents>元素声明该元素用于声明所匹配的类型拥有一个新的parent（因此得名）
+            - schema-defined aspects（所有基于配置文件的aspect）只支持singleton model
+        - Advisors
+            - advisor就像一个小的自包含的方面，只有一个advice
+            - 切面自身通过一个baen表示，并且必须实现某个advice接口，同时，advisor也可以很好的利用AspectJ的切入点表达式
+            - Spring通过配置文件中<aop:advisor>元素支持advisor实际使用中，大多数情况下它会和transaction advice配合使用
+            - 为了定义一个advisor的优先级以便让advice可以有序，可以使用order属性来定义advisor的顺序
     5. Spring AOP API
     6. AspectJ

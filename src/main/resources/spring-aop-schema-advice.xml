@@ -14,9 +14,18 @@
 
         <aop:config>
             <aop:aspect id="moocAspectAOP" ref="moocAspect">
-                <aop:pointcut id="moocPointcut"
-                              expression="execution(* com.ixaut.aop.schema.advice.biz.AspectBiz.*(..))"/>
-                <aop:before method="before" pointcut-ref="moocPointcut"/>
+                <!--<aop:pointcut id="moocPointcut"-->
+                              <!--expression="execution(* com.ixaut.aop.schema.advice.biz.AspectBiz.*(..))"/>-->
+                <!--<aop:before method="before" pointcut-ref="moocPointcut"/>-->
+                <!--<aop:after-returning method="afterReturning" pointcut-ref="moocPointcut"/>-->
+                <!--<aop:after-throwing method="afterThrowing" pointcut-ref="moocPointcut"/>-->
+                <!--<aop:after method="after" pointcut-ref="moocPointcut"/>-->
+                <!--<aop:around method="around" pointcut-ref="moocPointcut"/>-->
+
+                <!--<aop:around method="aroundInit" pointcut="execution(* com.ixaut.aop.schema.advice.biz.AspectBiz.init(String,int)) and args(bizName,times)"/>-->
+                <aop:declare-parents types-matching="com.ixaut.aop.schema.advice.biz.*(+)"
+                                     implement-interface="com.ixaut.aop.schema.advice.Fit"
+                                     default-impl="com.ixaut.aop.schema.advice.FitImpl"/>
             </aop:aspect>
         </aop:config>
 

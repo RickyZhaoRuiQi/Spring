@@ -34,6 +34,7 @@ public class UnitTestBase {
     @After
     public void after() {
         context.destroy();
+
     }
 
     @SuppressWarnings("unchecked")
